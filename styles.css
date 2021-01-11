@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+
+html {
+	padding: 0;
+	margin: 0;
+	font-family: "Roboto Slab", serif;
+}
+
+body {
+	margin: 0;
+}
+
+header {
+	display: block;
+	width: 100%;
+	margin-top: 1em;
+}
+
+h1,
+h2 {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	font-size: 30px;
+}
+
+.actions {
+	text-align: center;
+	margin: 2em 0;
+}
+
+.actions input,
+.actions select {
+	font-size: 15px;
+	font-weight: 100;
+	line-height: 35px;
+	color: #707070;
+	border: 1px solid #707070;
+	/* visibility: hidden; */
+	display: none;
+}
+
+.actions input {
+	width: 140px;
+	padding: 0 0.5em;
+	line-height: 33px;
+	height: 33px;
+}
+
+.actions select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 180px;
+	padding: 0 0.5em;
+	line-height: 35px;
+	height: 35px;
+	font-family: inherit;
+}
+
+.container {
+	width: 100%;
+	position: relative;
+	display: inline-block;
+}
+
+#create-note {
+	width: 240px;
+	height: 33px;
+	line-height: 35px;
+	background-color: #121212;
+	color: #ffffff;
+	border: none;
+	font-family: "Roboto Slab", serif;
+	font-size: 20px;
+	font-weight: 400;
+}
+
+#create-note a {
+	text-decoration: none;
+}
+
+#notes {
+	padding-left: 120px;
+	margin-bottom: 100px;
+}
+
+#notes a {
+	display: inline-block;
+	color: #121212;
+	text-decoration: none;
+	padding: 100px 35px 50px 35px;
+	margin: 10px;
+	width: calc(50% - 100px);
+	height: 170px;
+	box-shadow: 5px 15px 20px #d1d1d1;
+}
+
+#notes a > p {
+	margin: 0;
+}
+
+#notes a > p:nth-of-type(1) {
+	font-size: 30px;
+	font-weight: 900;
+	margin-bottom: 0.4em;
+}
+
+#notes a > p:nth-of-type(2) {
+	font-size: 16px;
+	font-weight: 100;
+	color: #525252;
+	line-height: 1.3em;
+}
+
+#notes a > span {
+	display: inline-block;
+	margin-top: 0.5em;
+	font-weight: 900;
+}
+
+/* Edit Page */
+
+.go-home {
+	width: 100%;
+	text-align: center;
+	margin: 1em 0 4em;
+}
+
+/* Need to add a house background image or something similar */
+.go-home a {
+	display: inline-block;
+
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #121212;
+}
+
+.edit-container {
+	margin: 0 auto;
+	width: calc(100% - 8em);
+	padding: 2em 4em;
+	box-shadow: 5px 15px 20px #d1d1d1;
+	display: none;
+}
+
+.edit-container input {
+	display: inherit;
+	width: 100%;
+	background: none;
+	line-height: 5rem;
+	height: 5rem;
+	font-size: 3rem;
+	font-weight: 900;
+	border: none;
+	border-bottom: #121212;
+}
+
+.edit-container input::placeholder {
+	color: #b9b9b9;
+}
+
+.edit-container textarea {
+	display: inherit;
+	width: 100%;
+	border: none;
+	height: 400px;
+	font-family: "Roboto Slab", serif;
+	opacity: 0.5;
+	font-weight: 100;
+	padding: 1em 0;
+	border-top: 1px solid #b9b9b9;
+	resize: none;
+}
+
+.edit-container textarea::placeholder {
+	color: #707070;
+}
+
+#save-note {
+	width: 240px;
+	height: 35px;
+	line-height: 35px;
+	color: #ffffff;
+	background-color: #121212;
+	border: none;
+	font-size: 20px;
+	font-family: "Roboto Slab", serif;
+	margin: 2em 0;
+}
