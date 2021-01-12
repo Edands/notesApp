@@ -83,6 +83,11 @@ function saveNote() {
 	document.querySelector("#new-container").style.display = "none";
 }
 
+function updateNote(caller) {
+	let parentElementID = caller.parentNode.id;
+	let noteToEdit = document.querySelector(`#${parentElementID}`);
+}
+
 // Event listeners
 
 document.querySelector("#create-note").addEventListener("click", switchDisplay);

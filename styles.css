@@ -119,6 +119,26 @@ h2 {
 	font-weight: 900;
 }
 
+.edit-button {
+	width: 50px;
+	height: 25px;
+	background-color: #121212;
+	color: #ffffff;
+	border: none;
+	font-family: "Roboto Slab", serif;
+	font-size: 12px;
+}
+
+.delete-button {
+	width: 50px;
+	height: 25px;
+	background-color: #121212;
+	color: #ffffff;
+	border: none;
+	font-family: "Roboto Slab", serif;
+	font-size: 12px;
+}
+
 /* Edit Page */
 
 .go-home {
