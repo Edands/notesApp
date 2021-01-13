@@ -1,11 +1,9 @@
 // TODO:
-//  1. Update/Edit option
-//  5. Make a button to switch back the display
-//  6. Refactor switchDisplay() to make it just one function
-//  3/2. Delete Option
-//  2. Implement moment.js for the dates
-//  3. Make it so when you try to update a note the placeholder becomes the older info
-//  4. Make it so you can export/import Notes out of the browser or collect the data
+//  1. Make a button to switch back the display
+//  2. Refactor switchDisplay() to make it just one function
+//  3. Implement moment.js for the dates
+//  4. Make it so when you try to update a note the placeholder becomes the older info
+//  5. Make it so you can export/import Notes out of the browser or collect the data
 
 // Generates a random unique id for new records
 const uid = function () {
