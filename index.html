@@ -13,7 +13,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<link rel="stylesheet" href="styles.css" />
-		<link rel="stylesheet" href="m-styles.css" />
 	</head>
 	<body onload="loadStoredNotes()">
 		<header class="header">
@@ -68,7 +67,7 @@
 				class="body-input"
 				placeholder="Take your note here"
 			></textarea>
-			<button id="save-note">Save Changes</button>
+			<button id="save-updated-note">Save Changes</button>
 		</div>
 
 		<div class="container">
@@ -77,6 +76,11 @@
 					<p class="title">String</p>
 					<p class="content">A sequence of text lmao</p>
 					<span class="date">just a moment ago</span>
+					<br />
+					<button class="edit-button" onclick="updateNote(this)">Edit</button>
+					<button class="delete-button" onclick="deleteNote(this)">
+						Delete
+					</button>
 				</a>
 				<a href="#" class="list-item" id="buttonTest">
 					<p class="title">String</p>
@@ -84,7 +88,7 @@
 					<span class="date">just a moment ago</span>
 					<br />
 					<button class="edit-button" onclick="updateNote(this)">Edit</button>
-					<button class="delete-button" onclick="updateNote(this)">
+					<button class="delete-button" onclick="deleteNote(this)">
 						Delete
 					</button>
 				</a>
