@@ -1,7 +1,6 @@
 // TODO:
 //  1. Implement moment.js for the dates
-//  2. Make it so when you try to update a note the placeholder becomes the older info
-//  3. Make it so you can export/import Notes out of the browser or collect the data
+//  2. Make it so you can export/import Notes out of the browser or collect the data
 // 	4. DarkMode
 
 // Generates a random unique id for new records
@@ -125,6 +124,21 @@ parentElementID = "";
 function updateNote(caller) {
 	parentElementID = caller.parentNode.id;
 
+	// Showing the text in your older note about to edit
+
+	let noteTitle = document
+		.getElementById(`${parentElementID}`)
+		.getElementsByClassName("title")[0].innerHTML;
+
+	let noteBody = document
+		.getElementById(`${parentElementID}`)
+		.getElementsByClassName("content")[0].innerHTML;
+
+	document.getElementById("updated-note-title").value = noteTitle;
+
+	document.getElementById("updated-note-body").innerHTML = noteBody;
+
+	// Switching back the display
 	switchDisplay();
 }
 
@@ -141,7 +155,7 @@ function saveUpdatedNote() {
 	noteTitle.innerHTML = updatedNotetitle;
 	noteContent.innerHTML = updatedNoteBody;
 
-	// Update info in localStorage
+	// Updating info in localStorage
 	console.log(parentElementID);
 	let newRecordHTML = noteToEdit.outerHTML;
 	console.log(newRecordHTML);
@@ -155,6 +169,7 @@ function saveUpdatedNote() {
 	switchDisplay();
 }
 
+// Deletes the note from both the DOM and the localStorage
 function deleteNote(caller) {
 	let parentElement = caller.parentNode.id;
 
