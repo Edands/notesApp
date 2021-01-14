@@ -83,6 +83,7 @@ h2 {
 #notes {
 	padding-left: 120px;
 	margin-bottom: 100px;
+	display: block;
 }
 
 #notes a {
@@ -91,7 +92,7 @@ h2 {
 	text-decoration: none;
 	padding: 100px 35px 50px 35px;
 	margin: 10px;
-	width: calc(50% - 100px);
+	width: calc(40% - 100px);
 	height: 170px;
 	box-shadow: 5px 15px 20px #d1d1d1;
 }
@@ -139,27 +140,9 @@ h2 {
 	font-size: 12px;
 }
 
-/* Edit Page */
-
-.go-home {
-	width: 100%;
-	text-align: center;
-	margin: 1em 0 4em;
-}
-
-/* Need to add a house background image or something similar */
-.go-home a {
-	display: inline-block;
-
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: #121212;
-}
-
 .edit-container {
 	margin: 0 auto;
-	width: calc(100% - 8em);
+	width: calc(60% - 8em);
 	padding: 2em 4em;
 	box-shadow: 5px 15px 20px #d1d1d1;
 	display: none;
@@ -198,7 +181,7 @@ h2 {
 	color: #707070;
 }
 
-#save-note {
+.save-button {
 	width: 240px;
 	height: 35px;
 	line-height: 35px;
