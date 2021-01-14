@@ -1,9 +1,7 @@
 // TODO:
-//  1. Make a button to switch back the display
-//  2. Refactor switchDisplay() to make it just one function
-//  3. Implement moment.js for the dates
-//  4. Make it so when you try to update a note the placeholder becomes the older info
-//  5. Make it so you can export/import Notes out of the browser or collect the data
+//  1. Implement moment.js for the dates
+//  2. Make it so you can export/import Notes out of the browser or collect the data
+// 	4. DarkMode
 
 // Generates a random unique id for new records
 const uid = function () {
@@ -31,17 +29,52 @@ function loadStoredNotes() {
 	}
 }
 
+// Switches the "create new" button
+
+function switchButton() {
+	let createButton = document.querySelector("#create-note");
+
+	if (createButton.innerHTML == "Create Note") {
+		console.log("changing things");
+		createButton.innerHTML = "Go back";
+	} else {
+		createButton.innerHTML = "Create Note";
+	}
+}
+
 //  Switches the display to add or edit notes
 
 function switchDisplay() {
-	document.querySelector("#notes").style.display = "none";
-	document.querySelector("#new-container").style.display = "block";
+	let container = "";
+	let caller = null;
+	let notesDisplay = document.querySelector("#notes");
+
+	try {
+		caller = switchDisplay.caller.name;
+		console.log(`being called from ${caller}`);
+	} catch (error) {
+		console.log(`there is no caller function`);
+	}
+
+	if (caller == null || caller == "saveNote") {
+		container = document.querySelector("#new-container");
+	} else if (caller == "updateNote" || caller == "saveUpdatedNote") {
+		container = document.querySelector("#update-container");
+	}
+
+	switchButton();
+
+	if (notesDisplay.style.display != "none") {
+		notesDisplay.style.display = "none";
+		container.style.display = "block";
+	} else {
+		notesDisplay.style.display = "block";
+		container.style.display = "none";
+	}
 }
 
-function switchEditDisplay() {
-	document.querySelector("#notes").style.display = "none";
-	document.querySelector("#update-container").style.display = "block";
-}
+// There is a bug that makes the edit container stay locked
+// after presing the goback button when the edit container is showing.
 
 // Generate new Note HTML And Save written note
 
@@ -72,7 +105,7 @@ function saveNote() {
 	newNote.id = uid();
 	newNoteId = newNote.id;
 
-	newNote.style.setProperty("display", "block");
+	newNote.style.setProperty("display", "inline-block");
 
 	//Save to localStorage
 
@@ -83,9 +116,7 @@ function saveNote() {
 	console.log(`${newNoteId} saved to local storage`);
 
 	// Switching back the display
-
-	document.querySelector("#notes").style.display = "block";
-	document.querySelector("#new-container").style.display = "none";
+	switchDisplay();
 }
 
 parentElementID = "";
@@ -93,7 +124,22 @@ parentElementID = "";
 function updateNote(caller) {
 	parentElementID = caller.parentNode.id;
 
-	switchEditDisplay();
+	// Showing the text in your older note about to edit
+
+	let noteTitle = document
+		.getElementById(`${parentElementID}`)
+		.getElementsByClassName("title")[0].innerHTML;
+
+	let noteBody = document
+		.getElementById(`${parentElementID}`)
+		.getElementsByClassName("content")[0].innerHTML;
+
+	document.getElementById("updated-note-title").value = noteTitle;
+
+	document.getElementById("updated-note-body").innerHTML = noteBody;
+
+	// Switching back the display
+	switchDisplay();
 }
 
 function saveUpdatedNote() {
@@ -109,7 +155,7 @@ function saveUpdatedNote() {
 	noteTitle.innerHTML = updatedNotetitle;
 	noteContent.innerHTML = updatedNoteBody;
 
-	// Update info in localStorage
+	// Updating info in localStorage
 	console.log(parentElementID);
 	let newRecordHTML = noteToEdit.outerHTML;
 	console.log(newRecordHTML);
@@ -120,10 +166,10 @@ function saveUpdatedNote() {
 	parentElementID = "";
 
 	// Switching back the display
-	document.querySelector("#notes").style.display = "block";
-	document.querySelector("#update-container").style.display = "none";
+	switchDisplay();
 }
 
+// Deletes the note from both the DOM and the localStorage
 function deleteNote(caller) {
 	let parentElement = caller.parentNode.id;
 
