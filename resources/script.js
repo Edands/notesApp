@@ -1,7 +1,9 @@
 // TODO:
-//  1. Implement moment.js for the dates
+//  0. Generate a new <span> in DOM for last edited date
+//  1. Make the displayed date update with each refresh
 //  2. Make it so you can export/import Notes out of the browser or collect the data
 // 	4. DarkMode
+//  5. Consider using uid or not.
 
 // Generates a random unique id for new records
 const uid = function () {
@@ -102,8 +104,11 @@ function saveNote() {
 
 	newNoteTitle.innerHTML = `${notetitle}`;
 	newNoteContent.innerHTML = `${noteBody}`;
-	newNote.id = uid();
+	newNote.id = moment().valueOf();
 	newNoteId = newNote.id;
+
+	let momentNow = moment(parseInt(newNoteId));
+	newNoteDate.innerHTML = moment(momentNow).fromNow();
 
 	newNote.style.setProperty("display", "inline-block");
 
@@ -143,7 +148,7 @@ function updateNote(caller) {
 }
 
 function saveUpdatedNote() {
-	let noteToEdit = document.querySelector(`#${parentElementID}`);
+	let noteToEdit = document.getElementById(`${parentElementID}`);
 
 	let updatedNotetitle = document.querySelector("#updated-note-title").value;
 	let updatedNoteBody = document.querySelector("#updated-note-body").value;
@@ -154,6 +159,12 @@ function saveUpdatedNote() {
 
 	noteTitle.innerHTML = updatedNotetitle;
 	noteContent.innerHTML = updatedNoteBody;
+
+	let momentNow = moment().valueOf();
+
+	noteDate.innerHTML = `Created ${moment(
+		parseInt(parentElementID)
+	).fromNow()}. last edited ${moment(momentNow).fromNow()}`;
 
 	// Updating info in localStorage
 	console.log(parentElementID);
