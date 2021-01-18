@@ -1,9 +1,7 @@
 // TODO:
-//  0. Generate a new <span> in DOM for last edited date
-//  1. Make the displayed date update with each refresh
-//  2. Make it so you can export/import Notes out of the browser or collect the data
-// 	4. DarkMode
-//  5. Consider using uid or not.
+//  1. Make it so you can export/import Notes out of the browser or collect the data
+// 	2. DarkMode
+//  3. Consider using uid or not.
 
 // Generates a random unique id for new records
 const uid = function () {
@@ -124,6 +122,10 @@ function saveNote() {
 	switchDisplay();
 }
 
+function insertAfter(newNode, existingNode) {
+	existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+}
+
 parentElementID = "";
 
 function updateNote(caller) {
@@ -152,10 +154,13 @@ function saveUpdatedNote() {
 
 	let updatedNotetitle = document.querySelector("#updated-note-title").value;
 	let updatedNoteBody = document.querySelector("#updated-note-body").value;
+	let dateSpan = document.createElement("span");
+	let breakEl = document.createElement("br");
 
 	let noteTitle = noteToEdit.querySelector(".title");
 	let noteContent = noteToEdit.querySelector(".content");
 	let noteDate = noteToEdit.querySelector(".date");
+	let noteUpDate = noteToEdit.querySelector(".last-edited");
 
 	noteTitle.innerHTML = updatedNotetitle;
 	noteContent.innerHTML = updatedNoteBody;
@@ -164,7 +169,17 @@ function saveUpdatedNote() {
 
 	noteDate.innerHTML = `Created ${moment(
 		parseInt(parentElementID)
-	).fromNow()}. last edited ${moment(momentNow).fromNow()}`;
+	).fromNow()}.`;
+
+	if (noteUpDate) {
+		noteUpDate.innerHTML = `Last edited ${moment(momentNow).fromNow()}.`;
+	} else {
+		dateSpan.innerHTML = `Last edited ${moment(momentNow).fromNow()}.`;
+		dateSpan.className = "last-edited";
+		dateSpan.id = momentNow;
+		insertAfter(breakEl, noteDate);
+		insertAfter(dateSpan, noteDate);
+	}
 
 	// Updating info in localStorage
 	console.log(parentElementID);
@@ -188,6 +203,30 @@ function deleteNote(caller) {
 	document.getElementById(parentElement).remove();
 
 	console.log(`Record ${parentElement} removed`);
+}
+
+function loadDates() {
+	let notesDiv = document.getElementById("notes");
+	let notesChilds = notesDiv.getElementsByTagName("a");
+
+	// Change it to i = 1 for production
+	for (i = 2; i < notesChilds.length; i++) {
+		let currentChild = notesChilds[i];
+		let childID = currentChild.id;
+		let childCreation = currentChild.querySelector(".date");
+
+		if (currentChild.querySelector(".last-edited")) {
+			let childLastEdit = currentChild.querySelector(".last-edited");
+			let lastEditId = childLastEdit.id;
+			let editedDate = moment(parseInt(lastEditId));
+			childLastEdit.innerHTML = moment(editedDate).fromNow();
+		} else {
+			console.log(`there is no .last-edit in ${childID}`);
+		}
+
+		let creationDate = moment(parseInt(childID));
+		childCreation.innerHTML = moment(creationDate).fromNow();
+	}
 }
 
 // Event listeners
