@@ -3,11 +3,31 @@
 html {
 	padding: 0;
 	margin: 0;
-	font-family: "Roboto Slab", serif;
 }
 
 body {
+	transition: color 600ms, background-color 600ms;
+	--font: "Roboto Slab", serif;
+	--font-color-primary: #121212;
+	--font-color-secondary: #ffffff;
+	--background-primary: #ffffff;
+	--background-secondary: #ffffff;
+	--button-background: #121212;
+	--color-primary: #707070;
+	--shadow-color: #d1d1d1;
 	margin: 0;
+	font-family: var(--font);
+	background-color: var(--background-primary);
+}
+
+body.dark-mode {
+	--font-color-primary: #ffffff;
+	--font-color-secondary: #ffffff;
+	--background-primary: #121212;
+	--background-secondary: #212121;
+	--button-background: #323232;
+	--color-primary: #707070;
+	--shadow-color: #000000;
 }
 
 header {
@@ -22,6 +42,18 @@ h2 {
 	padding: 0;
 	margin: 0;
 	font-size: 30px;
+	color: var(--font-color-primary);
+}
+
+.dark-mode-btn {
+	display: block;
+	background: none;
+	border: none;
+}
+
+.sun-icon {
+	display: none;
+	color: #ffffff;
 }
 
 .actions {
@@ -68,10 +100,10 @@ h2 {
 	width: 240px;
 	height: 33px;
 	line-height: 35px;
-	background-color: #121212;
-	color: #ffffff;
+	background-color: var(--button-background);
+	color: var(--font-color-secondary);
 	border: none;
-	font-family: "Roboto Slab", serif;
+	font-family: var(--font);
 	font-size: 20px;
 	font-weight: 400;
 }
@@ -86,15 +118,18 @@ h2 {
 	display: block;
 }
 
+.list-item {
+	background-color: var(--background-secondary);
+	color: var(--font-color-primary);
+}
+
 #notes a {
 	display: inline-block;
-	color: #121212;
 	text-decoration: none;
-	padding: 100px 35px 50px 35px;
+	padding: 25px 35px 75px 35px;
 	margin: 10px;
-	width: calc(40% - 100px);
-	height: 170px;
-	box-shadow: 5px 15px 20px #d1d1d1;
+	width: calc(45% - 100px);
+	box-shadow: 5px 15px 20px var(--shadow-color);
 }
 
 #notes a > p {
@@ -110,33 +145,35 @@ h2 {
 #notes a > p:nth-of-type(2) {
 	font-size: 16px;
 	font-weight: 100;
-	color: #525252;
+	color: var(--font-color-primary);
 	line-height: 1.3em;
 }
 
 #notes a > span {
 	display: inline-block;
 	margin-top: 0.5em;
-	font-weight: 900;
+	font-weight: 200;
 }
 
 .edit-button {
 	width: 50px;
 	height: 25px;
-	background-color: #121212;
-	color: #ffffff;
+	background-color: var(--button-background);
+	color: var(--font-color-secondary);
 	border: none;
-	font-family: "Roboto Slab", serif;
+	border-radius: 5px;
+	font-family: var(--font);
 	font-size: 12px;
 }
 
 .delete-button {
 	width: 50px;
 	height: 25px;
-	background-color: #121212;
-	color: #ffffff;
+	background-color: var(--button-background);
+	color: var(--font-color-secondary);
 	border: none;
-	font-family: "Roboto Slab", serif;
+	border-radius: 5px;
+	font-family: var(--font);
 	font-size: 12px;
 }
 
@@ -144,7 +181,7 @@ h2 {
 	margin: 0 auto;
 	width: calc(60% - 8em);
 	padding: 2em 4em;
-	box-shadow: 5px 15px 20px #d1d1d1;
+	box-shadow: 5px 15px 20px var(--shadow-color);
 	display: none;
 }
 
@@ -157,7 +194,8 @@ h2 {
 	font-size: 3rem;
 	font-weight: 900;
 	border: none;
-	border-bottom: #121212;
+	border-bottom: var(--button-background);
+	color: var(--font-color-primary);
 }
 
 .edit-container input::placeholder {
@@ -169,12 +207,14 @@ h2 {
 	width: 100%;
 	border: none;
 	height: 400px;
-	font-family: "Roboto Slab", serif;
+	font-family: var(--font);
 	opacity: 0.5;
 	font-weight: 100;
 	padding: 1em 0;
 	border-top: 1px solid #b9b9b9;
 	resize: none;
+	color: var(--font-color-primary);
+	background-color: var(--background-secondary);
 }
 
 .edit-container textarea::placeholder {
@@ -185,10 +225,10 @@ h2 {
 	width: 240px;
 	height: 35px;
 	line-height: 35px;
-	color: #ffffff;
-	background-color: #121212;
+	color: var(--font-color-secondary);
+	background-color: var(--button-background);
 	border: none;
 	font-size: 20px;
-	font-family: "Roboto Slab", serif;
+	font-family: var(--font);
 	margin: 2em 0;
 }
