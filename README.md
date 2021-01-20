@@ -1,7 +1,7 @@
 # notesApp deployed at https://edands.github.io/notesApp/
 notesApp is a CRUD practice proyect using just HTML, CSS, the moment.js library and besides that everything else is mostly vanilla Javascript.
 
-![app-screenshot](https://raw.githubusercontent.com/Edands/notesApp/master/resources/Screenshot_2021-01-20%20Notes%20App.png)
+![app-screenshot](https://raw.githubusercontent.com/Edands/notesApp/master/resources/Screenshot_2021-01-20%20Notes%20App(1).png)
 
 The first note is hardcoded for now. 
 
