@@ -1,11 +1,11 @@
 // TODO:
 //  0. Improve vanilla and dark-mode colour pallete and text display
 //  1. Make it so you can export/import notes out of the browser or collect the data.
-// 	2. BUG: When the text in the textarea is too big it does mess up with the display of the note.
 //  3. Make the app more responsive.
 //  4. Consider making the site auto refresh after being idle for a certain ammount of time so the moment().fromNow() gets updated
 //  5. Add a popup or something similar to confirm note deletion
 //  6. Remove all the console.log()
+//  7. Save the dark-mode status in a brwoser cookie
 
 // Load previously stored records in localStorage
 function loadStoredNotes() {
@@ -28,7 +28,7 @@ function loadStoredNotes() {
 	}
 }
 
-// Switches the "create new" button
+// Switches the "create new" button so you can close the container and go back
 
 function switchButton() {
 	let createButton = document.querySelector("#create-note");
@@ -47,12 +47,11 @@ function switchDisplay() {
 	let container = "";
 	let caller = null;
 	let notesDisplay = document.querySelector("#notes");
+	let updateContainer = document.querySelector("#update-container");
 
 	// Switches the display showing either the container for new notes or the one for edits
 	// depending on who called the event
 
-	// BUG: There is a bug that makes the edit container stay locked
-	// after presing the goback button when the edit container is showing.
 	try {
 		caller = switchDisplay.caller.name;
 		console.log(`being called from ${caller}`);
@@ -60,10 +59,12 @@ function switchDisplay() {
 		console.log(`there is no caller function`);
 	}
 
-	if (caller == null || caller == "saveNote") {
-		container = document.querySelector("#new-container");
+	if (updateContainer.style.display != "none") {
+		container = updateContainer;
 	} else if (caller == "updateNote" || caller == "saveUpdatedNote") {
-		container = document.querySelector("#update-container");
+		container = updateContainer;
+	} else if (caller == null || caller == "saveNote") {
+		container = document.querySelector("#new-container");
 	}
 
 	switchButton();
