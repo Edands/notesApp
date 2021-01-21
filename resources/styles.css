@@ -10,8 +10,8 @@ body {
 	--font: "Roboto Slab", serif;
 	--font-color-primary: #121212;
 	--font-color-secondary: #ffffff;
-	--background-primary: #ffffff;
-	--background-secondary: #ffffff;
+	--background-primary: #f7f7f7;
+	--background-secondary: #eeeeee;
 	--button-background: #121212;
 	--color-primary: #707070;
 	--shadow-color: #d1d1d1;
@@ -49,10 +49,17 @@ h2 {
 	display: block;
 	background: none;
 	border: none;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.moon-icon {
+	display: none;
 }
 
 .sun-icon {
-	display: none;
+	display: block;
 	color: #ffffff;
 }
 
@@ -130,6 +137,8 @@ h2 {
 	margin: 10px;
 	width: calc(45% - 100px);
 	box-shadow: 5px 15px 20px var(--shadow-color);
+	border-top: 1px solid var(--shadow-color);
+	border-left: 1px solid var(--shadow-color);
 }
 
 #notes a > p {
@@ -206,11 +215,10 @@ h2 {
 	display: inherit;
 	width: 100%;
 	border: none;
-	height: 400px;
+	height: 300px;
 	font-family: var(--font);
-	opacity: 0.5;
 	font-weight: 100;
-	padding: 1em 0;
+	padding: 5px;
 	border-top: 1px solid #b9b9b9;
 	resize: none;
 	color: var(--font-color-primary);
@@ -231,4 +239,45 @@ h2 {
 	font-size: 20px;
 	font-family: var(--font);
 	margin: 2em 0;
+}
+
+/* Media queries */
+
+@media screen and (max-width: 992px) {
+	#notes {
+		padding-left: 10px;
+		margin-bottom: 50px;
+	}
+
+	#notes a {
+		display: block;
+		width: calc(95% - 100px);
+	}
+
+	#notes a > p:nth-of-type(1) {
+		font-size: 24px;
+	}
+
+	#notes a > p:nth-of-type(2) {
+		font-size: 16px;
+	}
+
+	#notes a > span {
+		font-size: 12px;
+		font-weight: 100;
+	}
+
+	.edit-container {
+		margin: 20px 10px;
+		width: calc(100vw - 100px);
+		padding: 20px 30px;
+	}
+
+	.edit-container textarea {
+		font-size: 16px;
+	}
+	.edit-container input {
+		height: 2rem;
+		font-size: 24px;
+	}
 }
