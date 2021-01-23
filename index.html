@@ -45,18 +45,6 @@
 		</header>
 
 		<div class="actions">
-			<input
-				type="text"
-				id="search-text"
-				class="input"
-				placeholder="Filter notes"
-			/>
-			<select class="dropdown" id="filter-by">
-				<option value="byEdited">Sort by last edited</option>
-				<option value="byCreated">Sort by recently created</option>
-				<option value="alphabetical">Sort by alphabetically</option>
-			</select>
-
 			<button id="create-note" class="button">Create Note</button>
 		</div>
 
@@ -96,19 +84,31 @@
 
 		<div class="container">
 			<div id="notes">
-				<a href="#" class="list-item" id="noteTemplate" style="display: none">
+				<div href="#" class="list-item" id="noteTemplate" style="display: none">
 					<p class="title">String</p>
 					<p class="content">A sequence of text</p>
 					<span class="date">just a moment ago</span>
 					<br />
 					<br />
-					<button class="edit-button" onclick="updateNote(this)">Edit</button>
-					<button class="delete-button" onclick="deleteNote(this)">
-						Delete
+					<button class="edit-button" onclick="updateNote(this)">
+						<svg style="width: 20px; height: 20px" viewBox="0 0 24 24">
+							<path
+								fill="currentColor"
+								d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+							/>
+						</svg>
 					</button>
-				</a>
+					<button class="edit-button" onclick="deleteNote(this)">
+						<svg style="width: 20px; height: 20px" viewBox="0 0 24 24">
+							<path
+								fill="currentColor"
+								d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+							/>
+						</svg>
+					</button>
+				</div>
 				<!-- Remove this when the app is consider done  -->
-				<a href="#" class="list-item" id="1595007379">
+				<div href="#" class="list-item" id="1595007379">
 					<p class="title">Unix Timestamps</p>
 					<p class="content">
 						The unix time stamp is a way to track time as a running total of
@@ -123,11 +123,23 @@
 					>
 					<br />
 					<br />
-					<button class="edit-button" onclick="updateNote(this)">Edit</button>
-					<button class="delete-button" onclick="deleteNote(this)">
-						Delete
+					<button class="edit-button" onclick="updateNote(this)">
+						<svg style="width: 20px; height: 20px" viewBox="0 0 24 24">
+							<path
+								fill="currentColor"
+								d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+							/>
+						</svg>
 					</button>
-				</a>
+					<button class="edit-button" onclick="deleteNote(this)">
+						<svg style="width: 20px; height: 20px" viewBox="0 0 24 24">
+							<path
+								fill="currentColor"
+								d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+							/>
+						</svg>
+					</button>
+				</div>
 			</div>
 		</div>
 

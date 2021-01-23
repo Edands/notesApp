@@ -1,13 +1,14 @@
 // TODO:
 //  0. Improve vanilla and dark-mode colour pallete and text display
 //  1. Make it so you can export/import notes out of the browser or collect the data.
-//  3. Make the app more responsive.
-//  4. Consider making the site auto refresh after being idle for a certain ammount of time so the moment().fromNow() gets updated
-//  5. Add a popup or something similar to confirm note deletion
-//  6. Remove all the console.log()
-//  7. Save the dark-mode status in a brwoser cookie
+//  2. Make the app more responsive.
+//  3. Consider making the site auto refresh after being idle for a certain ammount of time so the moment().fromNow() gets updated
+//  4. Add a popup or something similar to confirm note deletion
+//  5. Remove all the console.log()
+//  6. Save the dark-mode status in a brwoser cookie
 
 // Load previously stored records in localStorage
+
 function loadStoredNotes() {
 	var localStoreItems = localStorage.length;
 	console.log(localStoreItems);
@@ -48,6 +49,7 @@ function switchDisplay() {
 	let caller = null;
 	let notesDisplay = document.querySelector("#notes");
 	let updateContainer = document.querySelector("#update-container");
+	let newContainer = document.querySelector("#new-container");
 
 	// Switches the display showing either the container for new notes or the one for edits
 	// depending on who called the event
@@ -59,12 +61,17 @@ function switchDisplay() {
 		console.log(`there is no caller function`);
 	}
 
-	if (updateContainer.style.display != "none") {
-		container = updateContainer;
+	if (caller == "saveNote") {
+		container = newContainer;
 	} else if (caller == "updateNote" || caller == "saveUpdatedNote") {
 		container = updateContainer;
-	} else if (caller == null || caller == "saveNote") {
-		container = document.querySelector("#new-container");
+	} else if (
+		newContainer.style.display != "none" &&
+		updateContainer.style.display != "block"
+	) {
+		container = newContainer;
+	} else {
+		container = updateContainer;
 	}
 
 	switchButton();
@@ -149,7 +156,7 @@ function updateNote(caller) {
 
 	document.getElementById("updated-note-title").value = noteTitle;
 
-	document.getElementById("updated-note-body").innerHTML = noteBody;
+	document.getElementById("updated-note-body").value = noteBody;
 
 	// Switches to the edit container
 	switchDisplay();
