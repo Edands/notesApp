@@ -1,11 +1,11 @@
 // TODO:
-//  0. Improve vanilla and dark-mode colour pallete and text display
-//  1. Make it so you can export/import notes out of the browser or collect the data.
-//  2. Make the app more responsive.
-//  3. Consider making the site auto refresh after being idle for a certain ammount of time so the moment().fromNow() gets updated
-//  4. Add a popup or something similar to confirm note deletion
-//  5. Remove all the console.log()
-//  6. Save the dark-mode status in a brwoser cookie
+//  0. Change the order of the display of notes so newer ones show up first
+//  1. Consider making the site auto refresh after being idle for a certain ammount of time so the moment()
+//   .fromNow() gets updated or changing the way dates show up
+//  2. Add a popup or something similar to confirm note deletion
+//  3. Save the dark-mode and arange status in a brwoser cookie
+//  4. Remove all the console.log()
+//  5. Make it so you can export/import notes out of the browser or collect the data.
 
 // Load previously stored records in localStorage
 
@@ -265,7 +265,10 @@ function loadDates() {
 	}
 }
 
-// Controls the switch of classes for dark mode
+// Controls the switch buttons for dark mode and note arange
+
+let dashboard = document.querySelector(".dashboard");
+let agenda = document.querySelector(".agenda");
 
 function darkModeSwitch() {
 	let moonSwitch = document.querySelector(".moon-icon");
@@ -276,10 +279,32 @@ function darkModeSwitch() {
 		bodyClass.add("dark-mode");
 		moonSwitch.style.setProperty("display", "none");
 		sunSwitch.style.setProperty("display", "block");
+		dashboard.style.color = "#ffffff";
+		agenda.style.color = "#ffffff";
 	} else {
 		bodyClass.remove("dark-mode");
 		moonSwitch.style.setProperty("display", "block");
 		sunSwitch.style.setProperty("display", "none");
+		dashboard.style.color = "#121212";
+		agenda.style.color = "#121212";
+	}
+}
+
+function notesArangeSwitch() {
+	let notesAll = document.querySelectorAll(".list-item");
+
+	if (getComputedStyle(notesAll[0]).width == "calc(45% - 100px)") {
+		for (i = 0; i < notesAll.length; i++) {
+			notesAll[i].style.width = "calc(90% - 100px)";
+		}
+		dashboard.style.display = "block";
+		agenda.style.display = "none";
+	} else {
+		for (i = 0; i < notesAll.length; i++) {
+			notesAll[i].style.width = "calc(45% - 100px)";
+		}
+		dashboard.style.display = "none";
+		agenda.style.display = "block";
 	}
 }
 
@@ -288,6 +313,9 @@ function darkModeSwitch() {
 document
 	.querySelector(".dark-mode-btn")
 	.addEventListener("click", darkModeSwitch);
+document
+	.querySelector(".note-style")
+	.addEventListener("click", notesArangeSwitch);
 document.querySelector("#create-note").addEventListener("click", switchDisplay);
 document.querySelector("#save-note").addEventListener("click", saveNote);
 document

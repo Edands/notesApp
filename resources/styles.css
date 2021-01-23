@@ -45,18 +45,23 @@ h2 {
 	color: var(--font-color-primary);
 }
 
-.dark-mode-btn {
+.actions-buttons {
 	display: block;
-	background: none;
-	border: none;
+	padding: 5px;
 	position: absolute;
 	top: 5px;
 	right: 5px;
 	cursor: pointer;
 }
 
+.dark-mode-btn {
+	background: none;
+	border: none;
+}
+
 .moon-icon {
 	display: none;
+	color: #121212;
 }
 
 .sun-icon {
@@ -67,6 +72,25 @@ h2 {
 .actions {
 	text-align: center;
 	margin: 2em 0;
+}
+
+.note-style {
+	display: block;
+	background: none;
+	border: none;
+	top: 5px;
+	margin-right: 5px;
+	right: 0px;
+	cursor: pointer;
+}
+
+.agenda,
+.dashboard {
+	color: #ffffff;
+}
+
+.dashboard {
+	display: none;
 }
 
 .container {
@@ -100,15 +124,14 @@ h2 {
 .list-item {
 	background-color: var(--background-secondary);
 	color: var(--font-color-primary);
-	padding: 1px;
+	width: calc(45% - 100px);
 }
 
 #notes div {
 	display: inline-block;
 	text-decoration: none;
-	padding: 25px 35px 75px 35px;
+	padding: 25px 35px 35px 35px;
 	margin: 10px;
-	width: calc(45% - 100px);
 	box-shadow: 5px 15px 20px var(--shadow-color);
 	border-top: 1px solid var(--shadow-color);
 	border-left: 1px solid var(--shadow-color);
@@ -136,18 +159,6 @@ h2 {
 	display: inline-block;
 	font-size: 12px;
 }
-
-/* .edit-button {
-	width: 30px;
-	height: 30px;
-	background-color: var(--button-background);
-	color: var(--font-color-secondary);
-	border: none;
-	border-radius: 5px;
-	font-family: var(--font);
-	font-size: 12px;
-	cursor: pointer;
-} */
 
 .edit-button {
 	width: 30px;
@@ -230,9 +241,22 @@ button:hover {
 /* Media queries */
 
 @media screen and (max-width: 992px) {
+	h2 {
+		font-size: 24px;
+	}
+
+	.dashboard,
+	.agenda {
+		display: none !important;
+	}
+
 	#notes {
 		padding-left: 10px;
 		margin-bottom: 50px;
+	}
+
+	.list-item {
+		width: calc(100% - 100px) !important;
 	}
 
 	#notes a {
