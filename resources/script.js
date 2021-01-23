@@ -44,9 +44,9 @@ function switchButton() {
 
 //  Switches the display to add or edit notes
 
-function switchDisplay() {
+function switchDisplay(button) {
 	let container = "";
-	let caller = null;
+	let caller = "";
 	let notesDisplay = document.querySelector("#notes");
 	let updateContainer = document.querySelector("#update-container");
 	let newContainer = document.querySelector("#new-container");
@@ -66,17 +66,26 @@ function switchDisplay() {
 	} else if (caller == "updateNote" || caller == "saveUpdatedNote") {
 		container = updateContainer;
 	} else if (
-		newContainer.style.display != "none" &&
+		button.target.id == "create-note" &&
+		newContainer.style.display != "block" &&
 		updateContainer.style.display != "block"
 	) {
 		container = newContainer;
-	} else {
-		container = updateContainer;
+	} else if (
+		(button.target.id == "create-note" &&
+			newContainer.style.display != "none") ||
+		updateContainer.style.display != "none"
+	) {
+		container = null;
 	}
 
 	switchButton();
 
-	if (notesDisplay.style.display != "none") {
+	if (container == null) {
+		updateContainer.style.display = "none";
+		newContainer.style.display = "none";
+		notesDisplay.style.display = "block";
+	} else if (notesDisplay.style.display != "none") {
 		notesDisplay.style.display = "none";
 		container.style.display = "block";
 	} else {
@@ -126,6 +135,10 @@ function saveNote() {
 	console.log(newRecordHTML);
 	localStorage.setItem(newNoteId, newRecordHTML);
 	console.log(`${newNoteId} saved to local storage`);
+
+	// Reset value to the placeholder
+	document.querySelector("#new-note-title").value = "";
+	document.querySelector("#new-note-body").value = "";
 
 	// Switching back the display
 	switchDisplay();
